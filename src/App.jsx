@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 import products from "./products";
+import { motion } from "framer-motion";
 
 function App() {
   return (
@@ -11,7 +12,28 @@ function App() {
           return (
             <div className="menu-item-wrapper">
               <Link to={`/${product.name}`} className="menu-item">
-                <div className="item-name">{product.name}</div>
+                <motion.div className="item-name">
+                  {product.name.split("").map((c) => {
+                    return (
+                      <span
+                        style={{ overflowX: "hidden", display: "inline-flex" }}
+                      >
+                        <motion.span
+                          initial={{ x: "100%" }}
+                          animate={{
+                            x: 0,
+                          }}
+                          exit={{
+                            x: "-100%",
+                          }}
+                          transition={{ duration: 0.4, ease: "linear" }}
+                        >
+                          {c}
+                        </motion.span>
+                      </span>
+                    );
+                  })}
+                </motion.div>
                 <div className="item-desc">{product.desc}</div>
               </Link>
               <div className="scatter-img">

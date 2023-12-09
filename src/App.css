@@ -177,6 +177,7 @@ table {
   padding-left: 20vw;
   color: rgb(73, 73, 70);
   font-size: 75px;
+  line-height: 94px;
   font-family: "Afronaut";
   cursor: pointer;
   transform: translateX(80px);

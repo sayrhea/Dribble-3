@@ -96,26 +96,82 @@ function DetailsView() {
           <Link className="go-back" to="/">
             <FaLongArrowAltLeft /> BACK
           </Link>
-          <h2>{product.name}</h2>
-          <p className="para">{product.desc}</p>
+          <h2>
+            {product.name.split("").map((c) => {
+              return (
+                <span style={{ overflowX: "hidden", display: "inline-flex" }}>
+                  <motion.span
+                    initial={{ x: "100%" }}
+                    animate={{ x: 0 }}
+                    exit={{ x: "-100%" }}
+                    transition={{ duration: 0.4, ease: "linear" }}
+                  >
+                    {c}
+                  </motion.span>
+                </span>
+              );
+            })}
+          </h2>
+          <motion.p
+            initial={{
+              y: "30%",
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+              transition: { delay: 0.1, duration: 0.3, ease: "linear" },
+            }}
+            className="para"
+          >
+            {product.desc}
+          </motion.p>
         </div>
         <div className="images">
           <div className="image">
-            <img src={product.images[0]} />
+            <motion.img
+              initial={{
+                x: "-30%",
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                transition: { delay: 0.1, duration: 0.3, ease: "linear" },
+              }}
+              src={product.images[0]}
+            />
           </div>
           <div className="image main-image" ref={mainImgRef}>
+            <motion.img src={product.images[1]} style={{ opacity: 0 }} />
+          </div>
+          <div className="image">
             <motion.img
-              src={product.images[1]}
-              style={{ opacity: 0 }}
-              // initial={{ opacity: 0 }}
-              // animate={{ opacity: 1, transition: { delay: 0.5 } }}
+              initial={{
+                x: "30%",
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                transition: { delay: 0.1, duration: 0.3, ease: "linear" },
+              }}
+              src={product.images[2]}
             />
           </div>
           <div className="image">
-            <img src={product.images[2]} />
-          </div>
-          <div className="image">
-            <img src={product.images[3]} />
+            <motion.img
+              initial={{
+                x: "30%",
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                transition: { delay: 0.1, duration: 0.3, ease: "linear" },
+              }}
+              src={product.images[3]}
+            />
           </div>
           <motion.div className="scatter-img" ref={fragmentRef}>
             <motion.div
